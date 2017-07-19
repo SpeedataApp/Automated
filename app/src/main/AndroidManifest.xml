@@ -31,6 +31,7 @@
 
         <activity
             android:name=".wifi.WifiActivity"
+            android:label="@string/wifi"
             android:screenOrientation="portrait">
         </activity>
 
@@ -42,6 +43,7 @@
 
         <activity
             android:name=".battery.BatteryActivity"
+            android:label="@string/battery"
             android:screenOrientation="portrait">
         </activity>
 
@@ -53,6 +55,7 @@
 
         <activity
             android:name=".bluetooth.BluetoothActivity"
+            android:label="@string/bluetooth"
             android:screenOrientation="portrait">
         </activity>
 
@@ -64,14 +67,17 @@
 
         <activity
             android:name=".sim.SimActivity"
+            android:label="@string/sim"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".setting.SettingsActivity"
+            android:label="@string/settings"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".about.AboutActivity"
+            android:label="@string/about"
             android:screenOrientation="portrait">
         </activity>
     </application>

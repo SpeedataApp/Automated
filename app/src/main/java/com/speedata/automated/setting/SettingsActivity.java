@@ -10,6 +10,16 @@ public class SettingsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+//        setContentView(R.layout.activity_settings);
+    }
+
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_settings;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+
     }
 }

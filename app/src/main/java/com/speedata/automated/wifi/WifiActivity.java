@@ -10,6 +10,16 @@ public class WifiActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wifi);
+//        setContentView(R.layout.activity_wifi);
+    }
+
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_wifi;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+
     }
 }

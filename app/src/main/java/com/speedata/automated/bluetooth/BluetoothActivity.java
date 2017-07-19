@@ -10,6 +10,16 @@ public class BluetoothActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bluetooth);
+//        setContentView(R.layout.activity_bluetooth);
+    }
+
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_bluetooth;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+
     }
 }
