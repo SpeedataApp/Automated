@@ -1,10 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.speedata.automated.setting.SettingsActivity">
+    android:divider="@drawable/layout_divider_vertical"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin"
+    android:showDividers="middle"
+    tools:context=".setting.SettingsActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/time_battery"
+        style="?buttonBarButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:drawablePadding="@dimen/dp15"
+        android:drawableStart="@drawable/ic_menu_battery"
+        android:gravity="center_vertical"
+        android:text="@string/battery"
+        android:textSize="@dimen/sp18"/>
+
+    <TextView
+        android:id="@+id/time_bluetooth"
+        style="?buttonBarButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:drawablePadding="@dimen/dp15"
+        android:drawableStart="@drawable/ic_menu_bluetooth"
+        android:gravity="center_vertical"
+        android:text="@string/bluetooth"
+        android:textSize="@dimen/sp18"/>
+
+    <TextView
+        android:id="@+id/time_sim"
+        style="?buttonBarButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:drawablePadding="@dimen/dp15"
+        android:drawableStart="@drawable/ic_menu_sim"
+        android:gravity="center_vertical"
+        android:text="@string/sim"
+        android:textSize="@dimen/sp18"/>
+
+    <TextView
+        android:id="@+id/time_wifi"
+        style="?buttonBarButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:drawablePadding="@dimen/dp15"
+        android:drawableStart="@drawable/ic_menu_wifi"
+        android:gravity="center_vertical"
+        android:text="@string/wifi"
+        android:textSize="@dimen/sp18"/>
+</LinearLayout>

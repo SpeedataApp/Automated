@@ -13,4 +13,10 @@
     <string name="settings">设置</string>
     <string name="global">全局</string>
     <string name="about">关于</string>
+    <string name="set_battery_time">配置电量轮询时间</string>
+    <string name="set_bluetooth_time">配置蓝牙轮询时间</string>
+    <string name="set_sim_time">配置SIM轮询时间</string>
+    <string name="set_wifi_time">配置wifi轮询时间</string>
+    <string name="operation_failed">操作失败</string>
+    <string name="operation_successful">操作成功</string>
 </resources>
