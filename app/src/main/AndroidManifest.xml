@@ -14,12 +14,65 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+
+        <service
+            android:name=".wifi.WifiInfoService"
+            android:enabled="true"
+            android:exported="false">
+        </service>
+
+        <activity
+            android:name=".wifi.WifiActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <service
+            android:name=".battery.BatteryService"
+            android:enabled="true"
+            android:exported="false">
+        </service>
+
+        <activity
+            android:name=".battery.BatteryActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <service
+            android:name=".bluetooth.BluetoothService"
+            android:enabled="true"
+            android:exported="false">
+        </service>
+
+        <activity
+            android:name=".bluetooth.BluetoothActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <service
+            android:name=".sim.SimService"
+            android:enabled="true"
+            android:exported="false">
+        </service>
+
+        <activity
+            android:name=".sim.SimActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".setting.SettingsActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".about.AboutActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
