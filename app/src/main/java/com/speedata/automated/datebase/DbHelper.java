@@ -1,4 +1,13 @@
-package com.speedata.automated.setting;
+package com.speedata.automated.datebase;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.speedata.automated.wifi.DaoMaster;
+import com.speedata.automated.wifi.WifiDao;
+
+import org.greenrobot.greendao.database.Database;
+
 
 /**
  * ----------Dragon be here!----------/
@@ -20,15 +29,20 @@ package com.speedata.automated.setting;
  * 　　　　　┃┫┫　┃┫┫
  * 　　　　　┗┻┛　┗┻┛
  * ━━━━━━神兽出没━━━━━━
- *
- * @author :Reginer in  2017/7/20 4:02.
- *         联系方式:QQ:282921012
- *         功能描述:
+ * 创   建:Reginer in  2017/2/16 11:55.
+ * 联系方式:QQ:282921012
+ * 功能描述:数据库帮助类
  */
-public class ConstantsValue {
-    public static final String BATTERY_TIME = "battery_time";
-    public static final String BLUETOOTH_TIME = "bluetooth_time";
-    public static final String SIM_TIME = "sim_time";
-    public static final String WIFI_TIME = "wifi_time";
-    public static final String DB_NAME = "automated.db";
+public class DbHelper extends DaoMaster.OpenHelper {
+
+    public DbHelper(Context context, String name, SQLiteDatabase.CursorFactory factory) {
+        super(context, name, factory);
+    }
+
+
+    @Override
+    public void onUpgrade(Database db, int oldVersion, int newVersion) {
+        super.onUpgrade(db, oldVersion, newVersion);
+        MigrationHelper.migrate(db, WifiDao.class);
+    }
 }
