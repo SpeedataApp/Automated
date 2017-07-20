@@ -1,4 +1,4 @@
-package com.speedata.automated.wifi;
+package com.speedata.automated.battery;
 
 import android.support.annotation.Keep;
 
@@ -27,25 +27,25 @@ import org.greenrobot.greendao.annotation.Generated;
  * 　　　　　┗┻┛　┗┻┛
  * ━━━━━━神兽出没━━━━━━
  *
- * @author :Reginer in  2017/7/20 8:17.
+ * @author :Reginer in  2017/7/21 3:46.
  *         联系方式:QQ:282921012
- *         功能描述:wifi信息实体类
+ *         功能描述:电量信息实体类
  */
 @Entity
 @Keep
-public class Wifi {
+public class Battary {
     @Id(autoincrement = true)
     private Long id;
     private long time;
     private int level;
-    @Generated(hash = 1377379494)
-    public Wifi(Long id, long time, int level) {
+    @Generated(hash = 1896541959)
+    public Battary(Long id, long time, int level) {
         this.id = id;
         this.time = time;
         this.level = level;
     }
-    @Generated(hash = 229508075)
-    public Wifi() {
+    @Generated(hash = 997065331)
+    public Battary() {
     }
     public Long getId() {
         return this.id;
