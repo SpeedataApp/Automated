@@ -6,7 +6,15 @@ import android.os.IBinder;
 
 import com.speedata.automated.utils.Logcat;
 
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+
 public class BatteryService extends Service {
+    private Disposable mDisposable;
+
     public BatteryService() {
     }
 
@@ -17,13 +25,27 @@ public class BatteryService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Logcat.d("BatteryService   start  ---------------------------------");
+        startStatistics();
         return super.onStartCommand(intent, flags, startId);
     }
 
+
     @Override
     public void onDestroy() {
-        Logcat.d("BatteryService   destroy  ---------------------------------");
+        mDisposable.dispose();
         super.onDestroy();
+    }
+
+    /**
+     * 开始统计.
+     */
+    private void startStatistics() {
+        mDisposable = Observable.interval(5, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> getAndSaveInfo());
+    }
+
+    private void getAndSaveInfo() {
+        Logcat.d("get battery info --------------------------------");
     }
 }

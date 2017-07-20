@@ -6,6 +6,12 @@ import android.os.IBinder;
 
 import com.speedata.automated.utils.Logcat;
 
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+
 /**
  * ----------Dragon be here!----------/
  * 　　　┏┓　　　┏┓
@@ -32,6 +38,9 @@ import com.speedata.automated.utils.Logcat;
  *         功能描述:wifi 信息收集Service
  */
 public class WifiService extends Service {
+
+    private Disposable mDisposable;
+
     public WifiService() {
     }
 
@@ -42,13 +51,27 @@ public class WifiService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Logcat.d("WifiService   start  ---------------------------------");
+        startStatistics();
         return super.onStartCommand(intent, flags, startId);
     }
 
+
     @Override
     public void onDestroy() {
-        Logcat.d("WifiService   destroy  ---------------------------------");
+        mDisposable.dispose();
         super.onDestroy();
+    }
+
+    /**
+     * 开始统计.
+     */
+    private void startStatistics() {
+        mDisposable = Observable.interval(5, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> getAndSaveInfo());
+    }
+
+    private void getAndSaveInfo() {
+        Logcat.d("get wifi info --------------------------------");
     }
 }
