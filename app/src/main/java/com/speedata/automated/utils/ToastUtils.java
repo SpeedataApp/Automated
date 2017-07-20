@@ -1,4 +1,4 @@
-package com.speedata.automated.setting;
+package com.speedata.automated.utils;
 
 import android.os.Handler;
 import android.os.Looper;

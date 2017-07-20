@@ -13,19 +13,54 @@ import android.view.MenuItem;
 
 import com.speedata.automated.about.AboutActivity;
 import com.speedata.automated.battery.BatteryActivity;
+import com.speedata.automated.battery.BatteryService;
 import com.speedata.automated.bluetooth.BluetoothActivity;
+import com.speedata.automated.bluetooth.BluetoothService;
 import com.speedata.automated.setting.SettingsActivity;
 import com.speedata.automated.sim.SimActivity;
+import com.speedata.automated.sim.SimService;
 import com.speedata.automated.wifi.WifiActivity;
+import com.speedata.automated.wifi.WifiService;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private Intent mBatteryIntent;
+    private Intent mSimIntent;
+    private Intent mWifiIntent;
+    private Intent mBlueBoothIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+        startStatisticsService();
+    }
+
+    /**
+     * 开启统计Service.
+     */
+    private void startStatisticsService() {
+        mBatteryIntent = new Intent(this, BatteryService.class);
+        mSimIntent = new Intent(this, SimService.class);
+        mWifiIntent = new Intent(this, WifiService.class);
+        mBlueBoothIntent = new Intent(this, BluetoothService.class);
+        startService(mBatteryIntent);
+        startService(mSimIntent);
+        startService(mWifiIntent);
+        startService(mBlueBoothIntent);
+
+    }
+
+    /**
+     * 结束统计Service.
+     */
+    private void stopStatisticsService() {
+        stopService(mBatteryIntent);
+        stopService(mSimIntent);
+        stopService(mWifiIntent);
+        stopService(mBlueBoothIntent);
     }
 
     private void initView() {
@@ -79,4 +114,12 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    @Override
+    protected void onDestroy() {
+        stopStatisticsService();
+        super.onDestroy();
+    }
+
+
 }
