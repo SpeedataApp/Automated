@@ -33,19 +33,19 @@ import org.greenrobot.greendao.annotation.Generated;
  */
 @Entity
 @Keep
-public class Battary {
+public class Battery {
     @Id(autoincrement = true)
     private Long id;
     private long time;
-    private int level;
-    @Generated(hash = 1896541959)
-    public Battary(Long id, long time, int level) {
+    private long level;
+    @Generated(hash = 69986349)
+    public Battery(Long id, long time, long level) {
         this.id = id;
         this.time = time;
         this.level = level;
     }
-    @Generated(hash = 997065331)
-    public Battary() {
+    @Generated(hash = 620155092)
+    public Battery() {
     }
     public Long getId() {
         return this.id;
@@ -59,10 +59,10 @@ public class Battary {
     public void setTime(long time) {
         this.time = time;
     }
-    public int getLevel() {
+    public long getLevel() {
         return this.level;
     }
-    public void setLevel(int level) {
+    public void setLevel(long level) {
         this.level = level;
     }
 }
