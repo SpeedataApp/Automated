@@ -1,10 +1,13 @@
 package com.speedata.automated.wifi;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.IBinder;
 
-import com.speedata.automated.utils.Logcat;
+import com.speedata.automated.AppAutomated;
 
 import java.util.concurrent.TimeUnit;
 
@@ -71,7 +74,16 @@ public class WifiService extends Service {
                 .subscribe(aLong -> getAndSaveInfo());
     }
 
+    /**
+     * 获取信息并保存.
+     */
     private void getAndSaveInfo() {
-        Logcat.d("get wifi info --------------------------------");
+        Wifi wifi = new Wifi();
+        WifiDao mWifiDao = AppAutomated.getInstance().getDaoSession().getWifiDao();
+        WifiManager mWifiManager = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
+        WifiInfo mWifiInfo = mWifiManager.getConnectionInfo();
+        wifi.setLevel(mWifiInfo.getRssi());
+        wifi.setTime(System.currentTimeMillis());
+        mWifiDao.insertOrReplace(wifi);
     }
 }

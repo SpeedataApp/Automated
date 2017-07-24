@@ -2,10 +2,10 @@ package com.speedata.automated;
 
 import android.app.Application;
 
+import com.speedata.automated.battery.DaoMaster;
+import com.speedata.automated.battery.DaoSession;
 import com.speedata.automated.datebase.DbHelper;
 import com.speedata.automated.setting.ConstantsValue;
-import com.speedata.automated.wifi.DaoMaster;
-import com.speedata.automated.wifi.DaoSession;
 
 import org.greenrobot.greendao.database.Database;
 

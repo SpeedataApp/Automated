@@ -34,13 +34,13 @@ import io.reactivex.disposables.Disposable;
  * 　　　　　┃┫┫　┃┫┫
  * 　　　　　┗┻┛　┗┻┛
  * ━━━━━━神兽出没━━━━━━
+ *
  * @author :Reginer in  2017/7/21 5:41.
  *         联系方式:QQ:282921012
  *         功能描述:获取电量信息Service
  */
 public class BatteryService extends Service {
     private Disposable mDisposable;
-    private BatteryDao mBatteryDao;
 
     public BatteryService() {
     }
@@ -52,7 +52,6 @@ public class BatteryService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        mBatteryDao = AppAutomated.getInstance().getDaoSession().getBatteryDao();
         startStatistics();
         return super.onStartCommand(intent, flags, startId);
     }
@@ -78,6 +77,7 @@ public class BatteryService extends Service {
      */
     private void getAndSaveInfo() {
         Battery battery = new Battery();
+        BatteryDao mBatteryDao = AppAutomated.getInstance().getDaoSession().getBatteryDao();
         BatteryManager mBatteryManager = (BatteryManager) getSystemService(Context.BATTERY_SERVICE);
         battery.setLevel(mBatteryManager.getLongProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY));
         battery.setTime(System.currentTimeMillis());

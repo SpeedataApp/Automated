@@ -3,7 +3,7 @@ package com.speedata.automated.datebase;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.speedata.automated.wifi.DaoMaster;
+import com.speedata.automated.battery.DaoMaster;
 import com.speedata.automated.wifi.WifiDao;
 
 import org.greenrobot.greendao.database.Database;
