@@ -1,9 +1,14 @@
 package com.speedata.automated.sim;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
+import android.telephony.CellInfoGsm;
+import android.telephony.CellSignalStrengthGsm;
+import android.telephony.TelephonyManager;
 
+import com.speedata.automated.AppAutomated;
 import com.speedata.automated.utils.Logcat;
 
 import java.util.concurrent.TimeUnit;
@@ -14,6 +19,7 @@ import io.reactivex.disposables.Disposable;
 
 public class SimService extends Service {
     private Disposable mDisposable;
+
     public SimService() {
     }
 
@@ -45,6 +51,17 @@ public class SimService extends Service {
     }
 
     private void getAndSaveInfo() {
-        Logcat.d("get sim info --------------------------------");
+        Sim sim = new Sim();
+        SimDao mSimDao = AppAutomated.getInstance().getDaoSession().getSimDao();
+        TelephonyManager telephonyManager = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+        if (TelephonyManager.SIM_STATE_READY == telephonyManager.getSimState()) {
+            CellInfoGsm cellinfogsm = (CellInfoGsm) telephonyManager.getAllCellInfo().get(0);
+            CellSignalStrengthGsm cellSignalStrengthGsm = cellinfogsm.getCellSignalStrength();
+            sim.setLevel(cellSignalStrengthGsm.getDbm());
+            sim.setTime(System.currentTimeMillis());
+            mSimDao.insertOrReplace(sim);
+        } else {
+            Logcat.d("sim 卡不存在————————");
+        }
     }
 }
