@@ -67,7 +67,7 @@ public class BatteryService extends Service {
      * 开始统计.
      */
     private void startStatistics() {
-        mDisposable = Observable.interval(5, TimeUnit.SECONDS)
+        mDisposable = Observable.interval(5, TimeUnit.MINUTES)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> getAndSaveInfo());
     }

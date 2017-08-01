@@ -37,12 +37,14 @@ public class Sim {
     @Id(autoincrement = true)
     private Long id;
     private long time;
-    private int level;
-    @Generated(hash = 60077153)
-    public Sim(Long id, long time, int level) {
+    private int cdma;
+    private int lte;
+    @Generated(hash = 256084327)
+    public Sim(Long id, long time, int cdma, int lte) {
         this.id = id;
         this.time = time;
-        this.level = level;
+        this.cdma = cdma;
+        this.lte = lte;
     }
     @Generated(hash = 2123750318)
     public Sim() {
@@ -59,10 +61,16 @@ public class Sim {
     public void setTime(long time) {
         this.time = time;
     }
-    public int getLevel() {
-        return this.level;
+    public int getCdma() {
+        return this.cdma;
     }
-    public void setLevel(int level) {
-        this.level = level;
+    public void setCdma(int cdma) {
+        this.cdma = cdma;
+    }
+    public int getLte() {
+        return this.lte;
+    }
+    public void setLte(int lte) {
+        this.lte = lte;
     }
 }

@@ -69,7 +69,7 @@ public class WifiService extends Service {
      * 开始统计.
      */
     private void startStatistics() {
-        mDisposable = Observable.interval(5, TimeUnit.SECONDS)
+        mDisposable = Observable.interval(10, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> getAndSaveInfo());
     }
