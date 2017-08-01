@@ -14,7 +14,11 @@ import com.speedata.automated.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import win.reginer.rv.RRecyclerView;
 
 /**
@@ -47,6 +51,8 @@ public class SimActivity extends BaseActivity {
     private SimAdapter mAdapter;
     private List<Sim> mList;
     private SimDao mSimDao;
+    private Disposable mDisposable;
+    private RRecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,21 +69,30 @@ public class SimActivity extends BaseActivity {
     protected void initView(Bundle savedInstanceState) {
         mSimDao = AppAutomated.getInstance().getDaoSession().getSimDao();
         mList = new ArrayList<>();
+        mList.addAll(mSimDao.loadAll());
         mAdapter = new SimAdapter(this, mList);
-        RRecyclerView mRecyclerView = findViewById(R.id.rv_content);
+        mRecyclerView = findViewById(R.id.rv_content);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter.addHeaderView(LayoutInflater.from(this).inflate(R.layout.view_item_sim_layout, new LinearLayout(this), false));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         mRecyclerView.setAdapter(mAdapter);
+
+        showSimContent();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+    private void showSimContent() {
+        mDisposable = Observable.interval(10, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> reloadDb());
+    }
+
+    private void reloadDb() {
         mList.clear();
         mList.addAll(mSimDao.loadAll());
         mAdapter.notifyDataSetChanged();
+        mRecyclerView.smoothScrollToPosition(mAdapter.getItemCount());
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -98,4 +113,9 @@ public class SimActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        mDisposable.dispose();
+        super.onDestroy();
+    }
 }
