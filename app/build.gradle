@@ -3,7 +3,7 @@ apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion "26.0.1"
     defaultConfig {
         applicationId "com.speedata.automated"
         minSdkVersion 21
@@ -45,4 +45,5 @@ dependencies {
     implementation 'com.android.support:design:26.0.0-beta1'
     implementation 'org.greenrobot:greendao:3.2.2'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'win.reginer:RvCommon:1.0.11'
 }

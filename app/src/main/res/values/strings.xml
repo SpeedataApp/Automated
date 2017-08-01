@@ -19,4 +19,7 @@
     <string name="set_wifi_time">配置wifi轮询时间</string>
     <string name="operation_failed">操作失败</string>
     <string name="operation_successful">操作成功</string>
+    <string name="time">时间</string>
+    <string name="cdma">CDMA</string>
+    <string name="lte">LTE</string>
 </resources>
