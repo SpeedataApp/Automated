@@ -43,10 +43,10 @@ public class SimAdapter extends CommonAdapter<Sim> {
 
     @Override
     protected void convert(BaseViewHolder holder, Sim item, int position) {
-          holder.setText(R.id.tv_time,  DateUtils.formatDateTime(holder.getView().getContext(), item.getTime(), DateUtils.FORMAT_SHOW_TIME));
-          holder.setText(R.id.tv_time, TimeUtils.millis2String(item.getTime()));
-          holder.setText(R.id.tv_cdma,item.getCdma()+"dBm");
-          holder.setText(R.id.tv_lte,item.getLte()+"dBm");
+        holder.setText(R.id.tv_time, DateUtils.formatDateTime(holder.getView().getContext(), item.getTime(), DateUtils.FORMAT_SHOW_TIME));
+        holder.setText(R.id.tv_time, TimeUtils.millis2String(item.getTime()));
+        holder.setText(R.id.tv_cdma, String.valueOf(item.getDbm()));
+        holder.setText(R.id.tv_lte, String.valueOf(item.getAsu()));
     }
 
     @Override

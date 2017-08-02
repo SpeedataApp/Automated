@@ -18,7 +18,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="@string/cdma"/>
+        android:text="@string/dbm"/>
 
     <TextView
         android:id="@+id/tv_lte"
@@ -26,5 +26,5 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="@string/lte"/>
+        android:text="@string/asu"/>
 </LinearLayout>

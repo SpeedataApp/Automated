@@ -20,8 +20,8 @@ import io.reactivex.disposables.Disposable;
 public class SimService extends Service {
     private Disposable mDisposable;
     private SimDao mSimDao;
-    private int cdma;
-    private int lte;
+    private int dbm;
+    private int asu;
     private SimStateListener mSimStateListener;
 
     public SimService() {
@@ -63,8 +63,8 @@ public class SimService extends Service {
     @SuppressLint("MissingPermission")
     private void getAndSaveInfo() {
         Sim sim = new Sim();
-        sim.setCdma(cdma);
-        sim.setLte(lte);
+        sim.setDbm(dbm);
+        sim.setAsu(asu);
         sim.setTime(System.currentTimeMillis());
         mSimDao.insertOrReplace(sim);
     }
@@ -73,8 +73,20 @@ public class SimService extends Service {
         @Override
         public void onSignalStrengthsChanged(SignalStrength signalStrength) {
             super.onSignalStrengthsChanged(signalStrength);
-            cdma = signalStrength.getCdmaDbm();
-            lte = signalStrength.getEvdoDbm();
+            dbm = getSignalStrengthByName(signalStrength, "getDbm");
+            asu = getSignalStrengthByName(signalStrength, "getAsuLevel");
+        }
+
+        @SuppressWarnings("unchecked")
+        private int getSignalStrengthByName(SignalStrength signalStrength, String methodName) {
+            try {
+                Class classFromName = Class.forName(SignalStrength.class.getName());
+                java.lang.reflect.Method method = classFromName.getDeclaredMethod(methodName);
+                Object object = method.invoke(signalStrength);
+                return (int) object;
+            } catch (Exception ex) {
+                return -113;
+            }
         }
     }
 }
